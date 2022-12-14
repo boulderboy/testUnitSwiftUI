@@ -10,36 +10,49 @@ import SwiftUI
 struct SelectOptionsView: View {
     
     @Binding var item: Item
+    @Binding var selectedColor: Int
+    @Binding var selectedCapacity: Int
     
     var body: some View {
         HStack{
             ForEach(item.color, id: \.self){ color in
-                Button {
-                    
-                } label: {
+                let currentColorId = item.color.firstIndex(of: color)
+
                     Color.init(hex: color)
                         .cornerRadius(20)
                         .overlay {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.white)
+                            
+                            if currentColorId == selectedColor{
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        .onTapGesture {
+                            selectedColor = currentColorId ?? 0
                         }
                 }
                 .frame(width: 40, height: 40)
-            }
             Spacer()
             ForEach(item.capacity, id:\.self){ capacity in
-                Button {
-                    
-                } label: {
+                let currentCapacityId = item.capacity.firstIndex(of: capacity)
+                let isSelected = currentCapacityId == selectedCapacity
+                ZStack {
+                    if isSelected {
+                        Color.mainOrange.cornerRadius(10)
+                            .frame(width: 71, height: 30)
+                    }
                     Text("\(capacity) GB")
-                        .font(.system(size: 13))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 15)
+                            .font(.system(size: 13))
+                            .foregroundColor(isSelected ? .white : .gray)
+                            .padding(.horizontal, 15)
                         .padding(.vertical, 8)
-                        .background(Color.mainOrange.cornerRadius(10))
+                }
+                .onTapGesture {
+                    selectedCapacity = currentCapacityId ?? 0
+                }
+                        
                 }
                 .padding(.horizontal, 10)
-            }
         }
     }
 }

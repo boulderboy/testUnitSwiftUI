@@ -28,6 +28,7 @@ struct InfoPicturesView: View {
     }
     
     func createCells() {
+        cells = []
         for parameter in parameters {
             switch parameter {
             case "cpu":

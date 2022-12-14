@@ -10,6 +10,8 @@ import SwiftUI
 struct DescriptionView: View {
     
     @Binding var item: Item
+    @Binding var selectedColor: Int
+    @Binding var selectedCapacity: Int
     
     var body: some View {
         
@@ -44,7 +46,7 @@ struct DescriptionView: View {
                     Text("Select color and capacity")
                         .font(.system(size: 16))
                         .padding(.top, 29)
-                    SelectOptionsView(item: $item)
+                    SelectOptionsView(item: $item, selectedColor: $selectedColor, selectedCapacity: $selectedCapacity)
                         .padding(.top, 18)
                     AddButtonView(price: item.price)
                         .padding(.vertical, 27)
@@ -59,7 +61,7 @@ struct DescriptionView: View {
 
 //extension DescriptionView {
 //    var options: some View {
-//        
+//
 //    }
 //}
 

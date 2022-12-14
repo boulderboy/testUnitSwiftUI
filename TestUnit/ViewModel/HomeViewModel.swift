@@ -10,9 +10,9 @@ import SwiftUI
 
 class HomeViewModel: ObservableObject {
     
-    @Published var home: Home = Home(homeStore: [HotSale(id: 1, title: "", subtitle: "", picture: "")], bestSeller: [BestSeller(id: 1, title: "", priceWithoutDiscount: 0, discountPrice: 0, picture: "")])
+    @Published var home: Home = Home(homeStore: [HotSale(id: 1, title: "", subtitle: "", picture: "")], bestSeller: [BestSeller(id: 1, title: "", priceWithoutDiscount: 0, discountPrice: 0, picture: "", isFavorites: true)])
     @Published var hotSales: [HotSaleModel] = [HotSaleModel(hotSale: HotSale(id: 1, title: "", subtitle: "", picture: ""), image: Image(systemName: "home"))]
-    @Published var bestSellers: [BestSellerModel] = [BestSellerModel(item: BestSeller(id: 1, title: "", priceWithoutDiscount: 0, discountPrice: 0, picture: ""), image: Image(systemName: "house"))]
+    @Published var bestSellers: [BestSellerModel] = [BestSellerModel(item: BestSeller(id: 1, title: "", priceWithoutDiscount: 0, discountPrice: 0, picture: "", isFavorites: true), image: Image(systemName: "house"))]
     
     init() {
         getInfoForHomePage { result in

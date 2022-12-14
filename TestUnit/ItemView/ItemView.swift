@@ -19,7 +19,7 @@ struct ItemView: View {
                     Color.mainBackgroundColor.ignoresSafeArea()
                     VStack {
                         CarouselView(images: vm.itemImages)
-                        DescriptionView(item: $vm.item)
+                        DescriptionView(item: $vm.item, selectedColor: $vm.selectedColor, selectedCapacity: $vm.selectedMemory)
                     }
                     .padding(.top, 30)
                 }
@@ -64,8 +64,8 @@ struct ItemView: View {
     }
 }
 
-//struct ItemView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ItemView(item: Item.testItem)
-//    }
-//}
+struct ItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        ItemView()
+    }
+}

@@ -25,4 +25,5 @@ struct BestSeller: Codable, Hashable {
     let priceWithoutDiscount: Int
     let discountPrice: Int
     let picture: String
+    var isFavorites: Bool
 }

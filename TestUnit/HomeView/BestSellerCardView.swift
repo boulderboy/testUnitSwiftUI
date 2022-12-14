@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BestSellerCardView: View {
     
-    var card: BestSellerModel
+    @State var card: BestSellerModel
     
     var body: some View {
         ZStack {
@@ -49,13 +49,16 @@ struct BestSellerCardView: View {
             Button {
                 
             } label: {
-                Image(systemName: "heart")
+                Image(systemName: card.item.isFavorites ? "heart.fill" : "heart")
                     .foregroundColor(.orange)
                     .padding()
                     .background(Color.white
                         .clipShape(Circle())
                         .shadow(radius: 5)
                         .frame(width: 30, height: 30))
+                    .onTapGesture {
+                        card.item.isFavorites.toggle()
+                    }
                 
             }
         }
