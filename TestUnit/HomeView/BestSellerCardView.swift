@@ -33,7 +33,8 @@ struct BestSellerCardView: View {
                     AsyncImage(url: URL(string: picture)) { image in
                         image.resizable().scaledToFit().clipped()
                     } placeholder: {
-                        Color.gray
+                        ProgressView()
+                            .progressViewStyle(.circular)
                     }.frame(width: 181, height: 168)
 
                     HStack(alignment: .bottom) {

@@ -37,7 +37,8 @@ struct hotSaleCard: View {
             AsyncImage(url: URL(string: url)) { image in
                 image.resizable().scaledToFill()
             } placeholder: {
-                Color.gray
+                ProgressView()
+                    .progressViewStyle(.circular)
             }
             .frame(maxWidth: UIScreen.main.bounds.width - 34, maxHeight: 180)
             .cornerRadius(15)

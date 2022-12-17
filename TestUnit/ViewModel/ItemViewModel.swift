@@ -25,7 +25,9 @@ class ItemViewModel: ObservableObject {
         let request = URLRequest(url: url)
         let dataTask = session.dataTask(with: request) { data, response, error in
             if let error = error {
-                competion(.failure(error))
+                DispatchQueue.main.async {
+                    competion(.failure(error))
+                }
                 return
             }
             guard let data = data else { return }
@@ -33,9 +35,13 @@ class ItemViewModel: ObservableObject {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             do {
                 let item = try jsonDecoder.decode(Item.self, from: data)
-                competion(.success(item))
+                DispatchQueue.main.async {
+                    competion(.success(item))
+                }
             } catch {
-                competion(.failure(error))
+                DispatchQueue.main.async {
+                    competion(.failure(error))
+                }
             }
         }
         dataTask.resume()
@@ -59,12 +65,16 @@ class ItemViewModel: ObservableObject {
             let urlSession = URLSession.shared
             let dataTask = urlSession.dataTask(with: request) { data, response, error in
                 if let error = error {
-                    compeliton(.failure(error))
+                    DispatchQueue.main.async {
+                        compeliton(.failure(error))
+                    }
                     return
                 }
                 guard let data = data,
-                    let uiImage = UIImage(data: data) else { return }
-                compeliton(.success(uiImage))
+                let uiImage = UIImage(data: data) else { return }
+                DispatchQueue.main.async {
+                    compeliton(.success(uiImage))
+                }
             }
             dataTask.resume()
         }

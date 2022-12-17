@@ -19,7 +19,8 @@ struct CartItemView: View {
                     image.resizable()
                         .scaledToFill()
                 } placeholder: {
-                    Color.gray
+                    ProgressView()
+                        .progressViewStyle(.circular)
                 } .frame(width: 89, height: 89)
                     .cornerRadius(10)
 
