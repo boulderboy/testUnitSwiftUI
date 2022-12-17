@@ -9,14 +9,14 @@ import SwiftUI
 
 struct HotSalesSection: View {
     
-    @Binding var cards: [HotSaleModel]
+    @Binding var hotSales: [HotSale]
     
     var body: some View {
         VStack(spacing: 0) {
             HomeSectionTitle(sectionName: "Hot sales")
             TabView {
-                ForEach(cards) { card in
-                    hotSaleCard(image: card.image, title: card.hotSale.title, description: card.hotSale.subtitle)
+                ForEach(hotSales) { sale in
+                    hotSaleCard(url: sale.picture, title: sale.title, description: sale.subtitle)
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
@@ -27,18 +27,20 @@ struct HotSalesSection: View {
 
 struct hotSaleCard: View {
     
-    var image: Image
+    var url: String
     var title: String
     var description: String
     
     var body: some View {
         ZStack(alignment: .leading) {
-            image
-                .resizable()
-                .scaledToFill()
-                .frame(maxWidth: UIScreen.main.bounds.width - 34, maxHeight: 180)
-                .scaledToFill()
-                .cornerRadius(15)
+
+            AsyncImage(url: URL(string: url)) { image in
+                image.resizable().scaledToFill()
+            } placeholder: {
+                Color.gray
+            }
+            .frame(maxWidth: UIScreen.main.bounds.width - 34, maxHeight: 180)
+            .cornerRadius(15)
                 
             TextForImage(title: title, description: description)
         }

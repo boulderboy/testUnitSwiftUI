@@ -10,9 +10,7 @@ import SwiftUI
 
 class HomeViewModel: ObservableObject {
     
-    @Published var home: Home = Home(homeStore: [HotSale(id: 1, title: "", subtitle: "", picture: "")], bestSeller: [BestSeller(id: 1, title: "", priceWithoutDiscount: 0, discountPrice: 0, picture: "", isFavorites: true)])
-    @Published var hotSales: [HotSaleModel] = [HotSaleModel(hotSale: HotSale(id: 1, title: "", subtitle: "", picture: ""), image: Image(systemName: "home"))]
-    @Published var bestSellers: [BestSellerModel] = [BestSellerModel(item: BestSeller(id: 1, title: "", priceWithoutDiscount: 0, discountPrice: 0, picture: "", isFavorites: true), image: Image(systemName: "house"))]
+    @Published var home: Home = .empty
     
     init() {
         getInfoForHomePage { result in
@@ -20,71 +18,10 @@ class HomeViewModel: ObservableObject {
             case .success(let home):
                 DispatchQueue.main.async {
                     self.home = home
-                    self.hotSales.removeAll()
-                    self.bestSellers.removeAll()
-                    self.loadHotSalesImages { result in
-                        switch result {
-                        case .success(let model):
-                            DispatchQueue.main.async {
-                                self.hotSales.append(model)
-                            }
-                        case .failure(let error):
-                            print(error)
-                        }
-                    }
-                    self.loadBestSellerImages { result in
-                        switch result {
-                        case .success(let model):
-                            DispatchQueue.main.async {
-                                self.bestSellers.append(model)
-                            }
-                        case .failure(let error):
-                            print(error)
-                        }
-                    }
-                    print("ok")
                 }
             case .failure(let error):
                 print(error)
             }
-        }
-    }
-    
-    func loadHotSalesImages(completion: @escaping (Result<HotSaleModel, Error>) -> Void) {
-        for item in home.homeStore {
-            guard let url = URL(string: item.picture) else { return }
-            let urlSession = URLSession.shared
-            let request = URLRequest(url: url)
-            let dataTask = urlSession.dataTask(with: request) {data, response, error in
-                if let error = error {
-                    completion(.failure(error))
-                }
-                guard let data = data,
-                      let uiImage = UIImage(data: data)
-                else { return }
-                let model = HotSaleModel(hotSale: item, image: Image(uiImage: uiImage))
-                completion(.success(model))
-            }
-            dataTask.resume()
-        }
-    }
-    
-    func loadBestSellerImages(completion: @escaping (Result<BestSellerModel, Error>) -> Void) {
-        for item in home.bestSeller {
-            guard let url = URL(string: item.picture) else { return }
-            let urlSession = URLSession.shared
-            let request = URLRequest(url: url)
-            let dataTask = urlSession.dataTask(with: request) {data, response, error in
-                if let error = error {
-                    completion(.failure(error))
-                }
-                guard let data = data,
-                      let uiImage = UIImage(data: data)
-                else { return }
-                let model = BestSellerModel(item: item, image: Image(uiImage: uiImage))
-                completion(.success(model))
-            }
-            dataTask.resume()
         }
     }
     
@@ -106,7 +43,6 @@ class HomeViewModel: ObservableObject {
                 let home = try jsonDecoder.decode(Home.self, from: data)
                 completion(.success(home))
             } catch {
-                print(error)
                 completion(.failure(error))
             }
             

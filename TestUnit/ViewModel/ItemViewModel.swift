@@ -20,14 +20,12 @@ class ItemViewModel: ObservableObject {
             case .failure(let error):
                 print(error)
             case .success(let item):
-                print("item is loaded")
                 self.item = item
                 self.getImages { result in
                     switch result {
                     case .failure(let error):
                         print(error)
                     case .success(let image):
-                        print("images UUUUU")
                         DispatchQueue.main.async {
                             self.itemImages.append(Image(uiImage: image))
                         }
@@ -53,7 +51,6 @@ class ItemViewModel: ObservableObject {
                 let item = try jsonDecoder.decode(Item.self, from: data)
                 competion(.success(item))
             } catch {
-                print(error)
                 competion(.failure(error))
             }
         }

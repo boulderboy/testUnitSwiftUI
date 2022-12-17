@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @State private var showFilters: Bool = false
-    @ObservedObject var vm = HomeViewModel()
+    @StateObject var vm = HomeViewModel()
     
     var body: some View {
         NavigationStack {
@@ -23,8 +23,8 @@ struct HomeView: View {
                         CategoriesSection()
                         SearchView()
                             .padding(.bottom, 24)
-                        HotSalesSection(cards: $vm.hotSales)
-                        BestSellerSectionView(cards: $vm.bestSellers)
+                        HotSalesSection(hotSales: $vm.home.homeStore)
+                        BestSellerSectionView(cards: $vm.home.bestSeller)
                     }
                 }
                 .padding(.horizontal, 17)

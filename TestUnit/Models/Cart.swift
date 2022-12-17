@@ -20,3 +20,7 @@ struct CartItem: Codable, Identifiable {
     let title: String
     let price: Int
 }
+
+extension Cart {
+    static let empty: Cart = Cart(basket: [CartItem(id: 0, images: "", title: "", price: 0)], delivery: "", id: "", total: 0)
+}

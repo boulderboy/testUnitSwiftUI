@@ -13,7 +13,7 @@ struct BestSellerSectionView: View {
     private let horizontalSpacing = CGFloat(11)
     private let height = CGFloat(227)
     
-    @Binding var cards: [BestSellerModel]
+    @Binding var cards: [BestSeller]
     
     var body: some View {
         ZStack {
@@ -33,14 +33,14 @@ struct BestSellerSectionView: View {
     }
     
     func buildView(rowIndex: Int) -> BestSellerRowView? {
-            var rowCards = [BestSellerModel]()
+            var rowCards = [BestSeller]()
             for itemIndex in 0..<Int(itemsPerRow) {
                 if rowIndex + itemIndex < cards.count {
                     rowCards.append(cards[rowIndex + itemIndex])
                 }
             }
             if !rowCards.isEmpty {
-                return BestSellerRowView(horizontalSpacing: horizontalSpacing, cards: rowCards, width: 181, height: height)
+                return BestSellerRowView(horizontalSpacing: horizontalSpacing, bestSellers: rowCards, width: 181, height: height)
             }
             
             return nil
@@ -48,9 +48,3 @@ struct BestSellerSectionView: View {
     
 
 }
-
-//struct BestSellerSectionVew_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BestSellerSectionView()
-//    }
-//}

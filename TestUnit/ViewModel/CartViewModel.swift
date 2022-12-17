@@ -10,7 +10,7 @@ import SwiftUI
 final class CartViewModel: ObservableObject {
     
     @Published var items: [CartItemWithImage] = []
-    @Published var cart: Cart = Cart(basket: [CartItem(id: 0, images: "", title: "", price: 0)], delivery: "", id: "", total: 0)
+    @Published var cart: Cart = Cart.empty
     var cartItem: [CartItem] = []
     
     init() {
@@ -20,20 +20,8 @@ final class CartViewModel: ObservableObject {
                 print(error)
             case .success(let cart):
                 DispatchQueue.main.async {
-                    print(cart)
                     self.cart = cart
                 }
-//                self.getItemsWithImages { result in
-//                    switch result {
-//                    case .failure(let error):
-//                        print(error)
-//                    case .success(let cartItemWithImage):
-////                        DispatchQueue.main.async {
-////                            print(cartItemWithImage)
-////                            self.items.append(cartItemWithImage)
-////                        }
-//                    }
-//                }
             }
         }
     }
@@ -78,3 +66,73 @@ final class CartViewModel: ObservableObject {
     }
 }
 
+// soliD
+//
+//protocol CartService {
+//    func getItems(completion: @escaping (Result<Cart, Error>) -> Void)
+//}
+//
+//final class CartServiceModel: CartService {
+//
+//    private enum URL {
+//
+//    }
+//
+//    private let session: URLSession
+//
+//    init(session: URLSession = .shared) {
+//        self.session = session
+//    }
+//
+//    func getItems(completion: @escaping (Result<Cart, Error>) -> Void) {
+//        // implementation
+//    }
+//}
+
+
+//class APIRequest {
+//    private let session: URLSession
+//    private let mapper: Mapper
+//
+//    init(session: URLSession = .shared, mapper: Mapper) {
+//        self.session = session
+//        self.mapper = mapper
+//    }
+//
+//    func performRequest<T: Decodable>(url: URL, completion: @escaping (Result<T, Error>) -> Void) {
+//        let task = session.dataTask(with: url) { data, response, error in
+//            if let error = error {
+//                completion(.failure(error))
+//                return
+//            }
+//            guard let data = data else { return }
+//            let jsonDecoder = JSONDecoder()
+//            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+//            do {
+//                let item = try jsonDecoder.decode(T.self, from: data)
+//                completion(.success(item))
+//            } catch {
+//                completion(.failure(error))
+//            }
+//        }
+//        task.resume()
+//    }
+//}
+
+//final class Mapper {
+//    private let decoder = JSONDecoder()
+//
+//    init(keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .convertFromSnakeCase) {
+//        decoder.keyDecodingStrategy = keyDecodingStrategy
+//    }
+//
+//    func map<T: Decodable>(from data: Data) -> Result<T, Error> {
+//        do {
+//            let item = try jsonDecoder.decode(T.self, from: data)
+//            return .success(item)
+//        } catch {
+//            return .failure(error)
+//        }
+//
+//    }
+//}

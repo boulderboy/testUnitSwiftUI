@@ -12,7 +12,14 @@ struct Home: Codable {
     var bestSeller: [BestSeller]
 }
 
-struct HotSale: Codable, Hashable {
+extension Home {
+    static let empty = Home(
+        homeStore: [],
+        bestSeller: []
+    )
+}
+
+struct HotSale: Codable, Identifiable {
     let id: Int
     let title: String
     let subtitle: String

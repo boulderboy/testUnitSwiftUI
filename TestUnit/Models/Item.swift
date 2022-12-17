@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Item: Codable {
+struct Item: Codable { // Product // Phone // 
     
     let id: String
     let CPU: String
