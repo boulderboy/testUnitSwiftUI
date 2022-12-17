@@ -41,7 +41,7 @@ struct DescriptionView: View {
                         .frame(width: 110, height: 18)
                     OptionsSelectorsView()
                         .padding(.top, 32)
-                    InfoPicturesView(item: item)
+                    InfoPicturesView(item: $item)
                         .padding(.top, 33)
                     Text("Select color and capacity")
                         .font(.system(size: 16))

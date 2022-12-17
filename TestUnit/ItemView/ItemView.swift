@@ -67,6 +67,7 @@ struct ItemView: View {
                 case .failure(let error):
                     print(error)
                 case .success(let item):
+
                     vm.item = item
 
                     vm.getImages { result in
@@ -75,7 +76,6 @@ struct ItemView: View {
                             print(error)
                         case .success(let image):
                             
-                            print("image")
                             vm.itemImages.append(Image(uiImage: image))
                         }
                     }
