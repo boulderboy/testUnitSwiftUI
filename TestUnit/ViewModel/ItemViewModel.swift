@@ -15,25 +15,9 @@ class ItemViewModel: ObservableObject {
     @Published var item: Item = Item(id: "", CPU: "", camera: "", capacity: [""], color: [""], images: [""], isFavorites: false, price: 0, rating: 0, sd: "", ssd: "", title: "")
     
     init() {
-        getData { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let item):
-                self.item = item
-                self.getImages { result in
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let image):
-                        DispatchQueue.main.async {
-                            self.itemImages.append(Image(uiImage: image))
-                        }
-                    }
-                }
-            }
-        }
+  
     }
+    
     
     func getData(competion: @escaping (Result<Item, Error>) -> Void) {
         guard let url = URL(string: "https://run.mocky.io/v3/6c14c560-15c6-4248-b9d2-b4508df7d4f5") else { return }

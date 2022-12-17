@@ -29,7 +29,7 @@ struct BestSellerRowView: View {
                     picture: value.picture,
                     discountPrice: value.discountPrice,
                     priceWithoutDiscount: value.priceWithoutDiscount,
-                    isFavorites: bestSeller.isFavorites
+                    isFavorites: value.isFavorites
                 )
                     .frame(width: width, height: height)
             }

@@ -21,7 +21,7 @@ struct BestSellerCardView: View {
 
 //    var bestSeller: BestSeller
 
-    @Binding var isFavorites: Bool
+    @State var isFavorites: Bool
 
     var body: some View {
         ZStack {
