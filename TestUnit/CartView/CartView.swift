@@ -10,7 +10,6 @@ import SwiftUI
 struct CartView: View {
     
     @ObservedObject var vm = CartViewModel()
-    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack {
@@ -46,7 +45,7 @@ struct CartView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        dismiss()
+                        
                     } label: {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.white)

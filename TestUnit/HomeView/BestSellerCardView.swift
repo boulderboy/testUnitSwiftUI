@@ -9,17 +9,11 @@ import SwiftUI
 
 
 struct BestSellerCardView: View {
-    
-//    @State var card: BestSellerModel
-//
-//    @State var bestSeller: BestSeller
 
     let title: String
     let picture: String
     let discountPrice: Int
     let priceWithoutDiscount: Int
-
-//    var bestSeller: BestSeller
 
     @State var isFavorites: Bool
 
@@ -79,12 +73,5 @@ struct BestSellerCardView: View {
         }
     }
 }
-
-//struct BestSellerCardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BestSellerCardView(card: tempCards.cards[0])
-//    }
-//}
-
 
 

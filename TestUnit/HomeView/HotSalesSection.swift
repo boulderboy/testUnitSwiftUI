@@ -95,11 +95,3 @@ struct TextForImage: View {
         }
     }
 }
-
-//struct HotSalesSection_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HotSalesSection(cards: [
-//            HotSaleModel(hotSale: HotSale(id: 1, title: "Xiaomi Mi 11 ultra", subtitle: "Súper. Mega. Rápido.", picture: ""), image: Image("hotSale"))
-//        ])
-//    }
-//}

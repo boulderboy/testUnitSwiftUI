@@ -57,8 +57,3 @@ struct SelectOptionsView: View {
     }
 }
 
-//struct SelectOptionsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SelectOptionsView(item: Item.testItem)
-//    }
-//}

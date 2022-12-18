@@ -33,7 +33,6 @@ struct TabItemView: View {
                 .resizable()
                 .foregroundColor(.white)
                 .frame(width: 18, height: 18)
-            
         }
     }
 }

@@ -24,8 +24,3 @@ struct HomeSectionTitle: View {
     }
 }
 
-struct HomeSectionTitle_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeSectionTitle(sectionName: "Section")
-    }
-}

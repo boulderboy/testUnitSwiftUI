@@ -52,7 +52,6 @@ struct InfoPicturesView: View {
     }
 
     private func imageName(for item: String) -> String? {
-        print("Image name for \(item)")
         switch item.lowercased() {
         case "cpu":
             return "cpu"
@@ -67,9 +66,3 @@ struct InfoPicturesView: View {
         }
     }
 }
-
-//struct InfoPicturesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        InfoPicturesView(item: Item.testItem)
-//    }
-//}

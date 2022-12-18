@@ -72,10 +72,3 @@ struct Category: View {
         
     }
 }
-
-
-struct CategoriesSection_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoriesSection()
-    }
-}

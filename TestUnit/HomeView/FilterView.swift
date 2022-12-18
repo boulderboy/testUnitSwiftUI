@@ -143,11 +143,3 @@ struct FilterView: View {
         }
     }
 }
-
-struct FilterView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack{
-            FilterView()
-        }
-    }
-}
