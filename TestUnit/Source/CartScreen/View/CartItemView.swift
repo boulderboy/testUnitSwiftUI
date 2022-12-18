@@ -9,13 +9,22 @@ import SwiftUI
 
 struct CartItemView: View {
 
-    var item: CartItem
-    @State var itemCount: Int = 1
+    private let title: String
+    private let price: Int
+    private let imageUrl: String
+
+    @State private var itemCount: Int = 1
+
+    init(title: String, price: Int, imageUrl: String) {
+        self.title = title
+        self.price = price
+        self.imageUrl = imageUrl
+    }
     
     var body: some View {
   
             HStack {
-                AsyncImage(url: URL(string: item.images)) { image in
+                AsyncImage(url: URL(string: imageUrl)) { image in
                     image.resizable()
                         .scaledToFill()
                 } placeholder: {
@@ -25,12 +34,12 @@ struct CartItemView: View {
                     .cornerRadius(10)
 
                 VStack(alignment: .leading) {
-                    Text(item.title)
+                    Text(title)
                         .font(.system(size: 22))
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .lineLimit(10)
-                    Text("$\(item.price)")
+                    Text("$\(price)")
                         .font(.system(size: 22))
                         .foregroundColor(Color.mainOrange)
                         .fontWeight(.semibold)
@@ -64,11 +73,5 @@ struct CartItemView: View {
                     .foregroundColor(Color.stepperBackground)
                     .frame(width: 15, height: 15)
             }
-    }
-}
-
-struct CartItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        CartItemView(item: CartItem(id: 0, images: "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-pro-silver-select?wid=470&hei=556&fmt=jpeg&qlt=95&.v=1631652954000", title: "asdf", price: 1500))
     }
 }

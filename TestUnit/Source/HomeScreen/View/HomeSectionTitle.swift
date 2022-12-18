@@ -9,7 +9,11 @@ import SwiftUI
 
 struct HomeSectionTitle: View {
     
-    var sectionName: String
+    private let sectionName: String
+
+    init(sectionName: String) {
+        self.sectionName = sectionName
+    }
     
     var body: some View {
         HStack {

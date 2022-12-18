@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @State private var showFilters: Bool = false
-    @StateObject var vm = HomeViewModel()
+    @StateObject private var vm = HomeViewModel()
     
     var body: some View {
         NavigationStack {
@@ -39,7 +39,7 @@ struct HomeView: View {
         }
     }
     
-    struct Header: View {
+    private struct Header: View {
         
         @Binding var showFilters: Bool
         

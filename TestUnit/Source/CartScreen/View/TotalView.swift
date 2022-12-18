@@ -9,8 +9,13 @@ import SwiftUI
 
 struct TotalView: View {
     
-    var totalPrice: Int
-    var deliveryPrice: String
+    private let totalPrice: Int
+    private let deliveryPrice: String
+
+    init(totalPrice: Int, deliveryPrice: String) {
+        self.totalPrice = totalPrice
+        self.deliveryPrice = deliveryPrice
+    }
     
     var body: some View {
         HStack {

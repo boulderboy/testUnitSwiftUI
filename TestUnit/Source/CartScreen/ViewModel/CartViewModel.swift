@@ -9,7 +9,6 @@ import SwiftUI
 
 final class CartViewModel: ObservableObject {
     
-    @Published var items: [CartItemWithImage] = []
     @Published var cart: Cart = Cart.empty
     var cartItem: [CartItem] = []
     
@@ -26,26 +25,7 @@ final class CartViewModel: ObservableObject {
         }
     }
     
-    func getItemsWithImages(completion: @escaping (Result<CartItemWithImage, Error>) -> Void) {
-        for item in cart.basket {
-            guard let url = URL(string: item.images) else { return }
-            let urlSession = URLSession.shared
-            let request = URLRequest(url: url)
-            let dataTask = urlSession.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-                guard let data = data,
-                      let uiImage = UIImage(data: data) else { return }
-                let cartItemWithImage = CartItemWithImage(id: item.id, item: item, image: Image(uiImage: uiImage))
-                completion(.success(cartItemWithImage))
-            }
-            dataTask.resume()
-        }
-    }
-    
-    func getItems(completion: @escaping (Result<Cart, Error>) -> Void) {
+    private func getItems(completion: @escaping (Result<Cart, Error>) -> Void) {
         guard let url = URL(string: "https://run.mocky.io/v3/53539a72-3c5f-4f30-bbb1-6ca10d42c149") else { return }
         let urlSession = URLSession.shared
         let request = URLRequest(url: url)

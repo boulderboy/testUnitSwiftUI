@@ -10,12 +10,20 @@ import SwiftUI
 
 struct BestSellerCardView: View {
 
-    let title: String
-    let picture: String
-    let discountPrice: Int
-    let priceWithoutDiscount: Int
+    private let title: String
+    private let imageUrl: String
+    private let price: Int
+    private let discountPrice: Int
 
-    @State var isFavorites: Bool
+    @State private var isFavorites: Bool
+
+    init(title: String, imageUrl: String, price: Int, discountPrice: Int, isFavorites: Bool) {
+        self.title = title
+        self.imageUrl = imageUrl
+        self.price = price
+        self.discountPrice = discountPrice
+        self.isFavorites = isFavorites
+    }
 
     var body: some View {
         ZStack {
@@ -24,7 +32,7 @@ struct BestSellerCardView: View {
             } label: {
                 
                 VStack(alignment: .leading) {
-                    AsyncImage(url: URL(string: picture)) { image in
+                    AsyncImage(url: URL(string: imageUrl)) { image in
                         image.resizable().scaledToFit().clipped()
                     } placeholder: {
                         ProgressView()
@@ -37,7 +45,7 @@ struct BestSellerCardView: View {
                             .font(.system(size: 18))
                             .foregroundColor(.black)
                             .fontWeight(.heavy)
-                        Text("$\(priceWithoutDiscount)")
+                        Text("$\(price)")
                             .padding(.leading, 7)
                             .font(.system(size: 13))
                             .strikethrough()

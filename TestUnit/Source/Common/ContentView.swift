@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Используется в качестве заглушки
 struct ContentView: View {
     var body: some View {
         VStack {

@@ -14,7 +14,7 @@ struct FilterView: View {
     @State private var sliderValue = 0.0
     @Environment(\.dismiss) var dismiss
     
-    var brands = ["Samsung", "Apple", "Huawei", "Xiaomi"]
+    private let brands = ["Samsung", "Apple", "Huawei", "Xiaomi"]
     
     var body: some View {
         VStack {

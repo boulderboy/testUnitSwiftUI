@@ -9,21 +9,28 @@ import SwiftUI
 
 struct BestSellerRowView: View {
     
-    var horizontalSpacing: CGFloat
-//    let bestSellers: [BestSeller]
-    @State var bestSellers: [BestSeller]
-    let width: CGFloat
-    let height: CGFloat
-    
+    private let width: CGFloat
+    private let height: CGFloat
+    private let horizontalSpacing: CGFloat
+
+    @State private var bestSellers: [BestSeller]
+
+    init(width: CGFloat, height: CGFloat, horizontalSpacing: CGFloat, bestSellers: [BestSeller]) {
+        self.width = width
+        self.height = height
+        self.horizontalSpacing = horizontalSpacing
+        self.bestSellers = bestSellers
+    }
+
     var body: some View {
         HStack(spacing: horizontalSpacing) {
             ForEach($bestSellers, id: \.self) { bestSeller in
                 let value = bestSeller.wrappedValue
                 BestSellerCardView(
                     title: value.title,
-                    picture: value.picture,
+                    imageUrl: value.picture,
+                    price: value.priceWithoutDiscount,
                     discountPrice: value.discountPrice,
-                    priceWithoutDiscount: value.priceWithoutDiscount,
                     isFavorites: value.isFavorites
                 )
                     .frame(width: width, height: height)

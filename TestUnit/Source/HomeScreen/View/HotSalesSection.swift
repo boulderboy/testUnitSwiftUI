@@ -16,7 +16,7 @@ struct HotSalesSection: View {
             HomeSectionTitle(sectionName: "Hot sales")
             TabView {
                 ForEach(hotSales) { sale in
-                    hotSaleCard(url: sale.picture, title: sale.title, description: sale.subtitle)
+                    HotSaleCard(url: sale.picture, title: sale.title, description: sale.subtitle)
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
@@ -25,11 +25,17 @@ struct HotSalesSection: View {
     }
 }
 
-struct hotSaleCard: View {
+private struct HotSaleCard: View {
     
-    var url: String
-    var title: String
-    var description: String
+    private let url: String
+    private let title: String
+    private let description: String
+
+    init(url: String, title: String, description: String) {
+        self.url = url
+        self.title = title
+        self.description = description
+    }
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -48,10 +54,15 @@ struct hotSaleCard: View {
     }
 }
 
-struct TextForImage: View {
+private struct TextForImage: View {
     
-    var title: String
-    var description: String
+    private let title: String
+    private let description: String
+
+    init(title: String, description: String) {
+        self.title = title
+        self.description = description
+    }
     
     var body: some View {
         HStack {

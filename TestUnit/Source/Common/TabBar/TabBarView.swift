@@ -15,7 +15,7 @@ struct TabBarView: View {
     var body: some View {
         HStack {
             Spacer()
-            ForEach(tabItems.indices) { index in
+            ForEach(tabItems.indices, id: \.self) { index in
                 let item = tabItems[index]
                 Button {
                     self.selectedIndex = index

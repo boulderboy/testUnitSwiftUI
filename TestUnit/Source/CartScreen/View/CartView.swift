@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CartView: View {
     
-    @ObservedObject var vm = CartViewModel()
+    @ObservedObject private var vm = CartViewModel()
     
     var body: some View {
         NavigationStack {
@@ -19,7 +19,11 @@ struct CartView: View {
                 ScrollView {
                     VStack {
                         ForEach(vm.cart.basket) { item in
-                            CartItemView(item: item)
+                            CartItemView(
+                                title: item.title,
+                                price: item.price,
+                                imageUrl: item.images
+                            )
                         }
                         Spacer()
                         VStack {
@@ -70,11 +74,5 @@ struct CartView: View {
                 }
             }
         }
-    }
-}
-
-struct CartView_Previews: PreviewProvider {
-    static var previews: some View {
-        CartView()
     }
 }

@@ -13,10 +13,10 @@ struct CategoryModel: Identifiable {
 }
 
 struct CategoriesSection: View {
-    
-    @State var selectedCategory = 0
-    
-    let categories = ["Phone", "Computer", "Health", "Books", "Other"]
+
+    private let categories = ["Phone", "Computer", "Health", "Books", "Other"]
+
+    @State private var selectedCategory = 0
     @State private var categoryModels = [CategoryModel]()
     
     var body: some View {
@@ -44,10 +44,12 @@ struct CategoriesSection: View {
     }
 }
 
-struct Category: View {
-    var category: CategoryModel
+private struct Category: View {
+
+    let category: CategoryModel
+
     @Binding var selectedCategory: Int
-    
+
     var body: some View {
         let isSelected = category.id == selectedCategory
         VStack{
