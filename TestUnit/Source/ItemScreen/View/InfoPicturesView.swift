@@ -10,9 +10,9 @@ import SwiftUI
 struct InfoPicturesView: View {
     
     @Binding var item: Item
-    @State var cells = [PrarmetrrView]()
+    @State var cells = [ParameterView]()
 
-    let parameters = ["cpu", "camera", "memorychip", "sd"]
+    private let parameters = ["cpu", "camera", "memorychip", "sd"]
     
     var body: some View {
         HStack {
@@ -31,18 +31,18 @@ struct InfoPicturesView: View {
     }
     
     func createCells() {
-        var result = [PrarmetrrView]()
+        var result = [ParameterView]()
 
         for parameter in ["cpu", "camera", "memorychip", "sd"] {
             switch parameter {
             case "cpu":
-                result.append(PrarmetrrView(imageName: "cpu", parameterLabel: item.CPU))
+                result.append(ParameterView(imageName: "cpu", parameterLabel: item.CPU))
             case "camera":
-                result.append(PrarmetrrView(imageName: "camera", parameterLabel: item.camera))
+                result.append(ParameterView(imageName: "camera", parameterLabel: item.camera))
             case "memorychip":
-                result.append(PrarmetrrView(imageName: "memorychip", parameterLabel: item.ssd))
+                result.append(ParameterView(imageName: "memorychip", parameterLabel: item.ssd))
             case "sd":
-                result.append(PrarmetrrView(imageName: "sdcard", parameterLabel: item.sd))
+                result.append(ParameterView(imageName: "sdcard", parameterLabel: item.sd))
             default:
                 return
             }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0437D80A294F511C0045FC1B /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0437D809294F511C0045FC1B /* Option.swift */; };
 		0453FAF52945FF8B0014B8EC /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FAF42945FF8B0014B8EC /* ItemView.swift */; };
 		0453FAF8294600CB0014B8EC /* ACarousel in Frameworks */ = {isa = PBXBuildFile; productRef = 0453FAF7294600CB0014B8EC /* ACarousel */; };
 		0453FAFA294603360014B8EC /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FAF9294603360014B8EC /* CarouselView.swift */; };
@@ -15,7 +16,7 @@
 		0453FB06294625D80014B8EC /* OptionsSelectorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB05294625D80014B8EC /* OptionsSelectorsView.swift */; };
 		0453FB08294627DE0014B8EC /* InfoPicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB07294627DE0014B8EC /* InfoPicturesView.swift */; };
 		0453FB0B29462B7D0014B8EC /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB0A29462B7D0014B8EC /* Item.swift */; };
-		0453FB0D294630830014B8EC /* PrarmetrrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB0C294630830014B8EC /* PrarmetrrView.swift */; };
+		0453FB0D294630830014B8EC /* ParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB0C294630830014B8EC /* ParameterView.swift */; };
 		0453FB0F294635C40014B8EC /* SelectOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB0E294635C40014B8EC /* SelectOptionsView.swift */; };
 		0453FB11294639500014B8EC /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB10294639500014B8EC /* AddButtonView.swift */; };
 		0453FB16294702F60014B8EC /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB15294702F60014B8EC /* TabItemView.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0437D809294F511C0045FC1B /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		0453FAF42945FF8B0014B8EC /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		0453FAF9294603360014B8EC /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		0453FAFD2946047A0014B8EC /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
@@ -55,7 +57,7 @@
 		0453FB05294625D80014B8EC /* OptionsSelectorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsSelectorsView.swift; sourceTree = "<group>"; };
 		0453FB07294627DE0014B8EC /* InfoPicturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPicturesView.swift; sourceTree = "<group>"; };
 		0453FB0A29462B7D0014B8EC /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		0453FB0C294630830014B8EC /* PrarmetrrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrarmetrrView.swift; sourceTree = "<group>"; };
+		0453FB0C294630830014B8EC /* ParameterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterView.swift; sourceTree = "<group>"; };
 		0453FB0E294635C40014B8EC /* SelectOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectOptionsView.swift; sourceTree = "<group>"; };
 		0453FB10294639500014B8EC /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
 		0453FB15294702F60014B8EC /* TabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
@@ -250,7 +252,7 @@
 				0453FB07294627DE0014B8EC /* InfoPicturesView.swift */,
 				0453FB03294624F50014B8EC /* StarsView.swift */,
 				0453FB05294625D80014B8EC /* OptionsSelectorsView.swift */,
-				0453FB0C294630830014B8EC /* PrarmetrrView.swift */,
+				0453FB0C294630830014B8EC /* ParameterView.swift */,
 				0453FB0E294635C40014B8EC /* SelectOptionsView.swift */,
 				0453FB10294639500014B8EC /* AddButtonView.swift */,
 			);
@@ -269,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				0453FB0A29462B7D0014B8EC /* Item.swift */,
+				0437D809294F511C0045FC1B /* Option.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -392,12 +395,13 @@
 				0453FB362948797F0014B8EC /* CartViewModel.swift in Sources */,
 				0453FB04294624F50014B8EC /* StarsView.swift in Sources */,
 				0453FB25294715060014B8EC /* HomeModel.swift in Sources */,
+				0437D80A294F511C0045FC1B /* Option.swift in Sources */,
 				049675742944782A00BED49D /* HomeView.swift in Sources */,
 				0496757D294482CC00BED49D /* CategoriesSection.swift in Sources */,
 				0453FB2E294874D30014B8EC /* CartView.swift in Sources */,
 				0453FB1B294706F60014B8EC /* CustomTabView.swift in Sources */,
 				0453FB0F294635C40014B8EC /* SelectOptionsView.swift in Sources */,
-				0453FB0D294630830014B8EC /* PrarmetrrView.swift in Sources */,
+				0453FB0D294630830014B8EC /* ParameterView.swift in Sources */,
 				0453FB3A29488FDE0014B8EC /* TotalView.swift in Sources */,
 				0453FB2B294856160014B8EC /* ItemViewModel.swift in Sources */,
 				049675772944785200BED49D /* Color.swift in Sources */,

@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct StarsView: View {
-    var rating: CGFloat
-    var maxRating: Int
+    private var rating: CGFloat
+    private var maxRating: Int
+    
+    init(rating: CGFloat, maxRating: Int) {
+        self.rating = rating
+        self.maxRating = maxRating
+    }
 
     var body: some View {
         let stars = HStack(spacing: 0) {

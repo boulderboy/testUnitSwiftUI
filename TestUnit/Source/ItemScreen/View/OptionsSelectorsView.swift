@@ -7,14 +7,9 @@
 
 import SwiftUI
 
-struct Option: Hashable {
-    let id: Int
-    let option: String
-}
-
 struct OptionsSelectorsView: View {
     
-    var options = [Option(id: 0, option: "Shop"),
+    private let options = [Option(id: 0, option: "Shop"),
                     Option(id: 1, option: "Details"),
                     Option(id: 2, option: "Features")]
     
