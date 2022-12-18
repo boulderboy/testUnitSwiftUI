@@ -10,23 +10,25 @@ import SwiftUI
 struct BestSellerRowView: View {
     
     var horizontalSpacing: CGFloat
-    let cards: [BestSellerModel]
+//    let bestSellers: [BestSeller]
+    @State var bestSellers: [BestSeller]
     let width: CGFloat
     let height: CGFloat
     
     var body: some View {
         HStack(spacing: horizontalSpacing) {
-            ForEach(cards, id: \.self) { card in
-                BestSellerCardView(card: card)
+            ForEach($bestSellers, id: \.self) { bestSeller in
+                let value = bestSeller.wrappedValue
+                BestSellerCardView(
+                    title: value.title,
+                    picture: value.picture,
+                    discountPrice: value.discountPrice,
+                    priceWithoutDiscount: value.priceWithoutDiscount,
+                    isFavorites: value.isFavorites
+                )
                     .frame(width: width, height: height)
             }
         }
         .padding(.vertical, 6)
     }
 }
-
-//struct BestSellerRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BestSellerRowView(horizontalSpacing: 11, cards: tempCards.cards, width: 181, height: 227)
-//    }
-//}

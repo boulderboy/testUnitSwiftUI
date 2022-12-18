@@ -18,25 +18,23 @@ struct TabItemView: View {
     let isSelected: Bool
     
     var body: some View {
-            if isSelected {
-                HStack {
-                    Circle()
-                        .fill(Color.white)
-                        .frame(width: 8, height: 8)
-                    Text(data.title)
-                        .foregroundColor(.white)
-                        .font(.system(size: 17))
-                }
-            } else {
-                Image(data.image)
+        if isSelected {
+            HStack {
+                Circle()
+                    .fill(Color.white)
+                    .frame(width: 8, height: 8)
+                Text(data.title)
                     .foregroundColor(.white)
-                    .frame(width: 18, height: 18)
+                    .font(.system(size: 17))
             }
+        } else {
+            Image(data.image)
+                .renderingMode(.template)
+                .resizable()
+                .foregroundColor(.white)
+                .frame(width: 18, height: 18)
+            
+        }
     }
 }
 
-//struct TabItemView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TabItemView()
-//    }
-//}

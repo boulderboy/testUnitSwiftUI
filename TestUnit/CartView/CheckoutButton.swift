@@ -10,7 +10,7 @@ import SwiftUI
 struct CheckoutButton: View {
     var body: some View {
         Button {
-            
+            // Do nothing
         } label: {
             Text("Checkout")
                 .frame(width: 326, height: 54)
@@ -19,7 +19,6 @@ struct CheckoutButton: View {
                 .foregroundColor(.white)
                 .fontWeight(.semibold)
         }
-
     }
 }
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CartItemWithImage: Identifiable {
+struct CartItemWithImage: Identifiable { // ViewModel
     var id: Int
     var item: CartItem
     var image: Image

@@ -7,10 +7,22 @@
 
 import SwiftUI
 
+
 struct BestSellerCardView: View {
     
-    @State var card: BestSellerModel
-    
+//    @State var card: BestSellerModel
+//
+//    @State var bestSeller: BestSeller
+
+    let title: String
+    let picture: String
+    let discountPrice: Int
+    let priceWithoutDiscount: Int
+
+//    var bestSeller: BestSeller
+
+    @State var isFavorites: Bool
+
     var body: some View {
         ZStack {
             NavigationLink {
@@ -18,23 +30,26 @@ struct BestSellerCardView: View {
             } label: {
                 
                 VStack(alignment: .leading) {
-                    card.image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 181, height: 168)
+                    AsyncImage(url: URL(string: picture)) { image in
+                        image.resizable().scaledToFit().clipped()
+                    } placeholder: {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                    }.frame(width: 181, height: 168)
+
                     HStack(alignment: .bottom) {
-                        Text("$\(card.item.discountPrice)")
+                        Text("$\(discountPrice)")
                             .padding(.leading,27)
                             .font(.system(size: 18))
                             .foregroundColor(.black)
                             .fontWeight(.heavy)
-                        Text("$\(card.item.priceWithoutDiscount)")
+                        Text("$\(priceWithoutDiscount)")
                             .padding(.leading, 7)
                             .font(.system(size: 13))
                             .strikethrough()
                             .foregroundColor(Color.gray)
                     }
-                    Text(card.item.title)
+                    Text(title)
                         .font(.system(size: 10))
                         .foregroundColor(.black)
                         .fontWeight(.light)
@@ -49,7 +64,7 @@ struct BestSellerCardView: View {
             Button {
                 
             } label: {
-                Image(systemName: card.item.isFavorites ? "heart.fill" : "heart")
+                Image(systemName: isFavorites ? "heart.fill" : "heart")
                     .foregroundColor(.orange)
                     .padding()
                     .background(Color.white
@@ -57,7 +72,7 @@ struct BestSellerCardView: View {
                         .shadow(radius: 5)
                         .frame(width: 30, height: 30))
                     .onTapGesture {
-                        card.item.isFavorites.toggle()
+                        isFavorites.toggle()
                     }
                 
             }
@@ -70,3 +85,6 @@ struct BestSellerCardView: View {
 //        BestSellerCardView(card: tempCards.cards[0])
 //    }
 //}
+
+
+

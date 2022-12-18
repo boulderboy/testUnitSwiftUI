@@ -13,12 +13,15 @@ struct ItemView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
+        
         NavigationStack {
             ScrollView {
                 ZStack {
                     Color.mainBackgroundColor.ignoresSafeArea()
                     VStack {
-                        CarouselView(images: vm.itemImages)
+                        if !vm.itemImages.isEmpty {
+                            CarouselView(images: vm.itemImages)
+                        }
                         DescriptionView(item: $vm.item, selectedColor: $vm.selectedColor, selectedCapacity: $vm.selectedMemory)
                     }
                     .padding(.top, 30)
@@ -41,8 +44,6 @@ struct ItemView: View {
                         }
                         .padding(.leading, 42)
                     }
-                  
-                    
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             
@@ -58,6 +59,26 @@ struct ItemView: View {
                         .padding(.trailing, 42)
                     }
                 
+                }
+            }
+        }.onAppear {
+            vm.getData { result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let item):
+
+                    vm.item = item
+
+                    vm.getImages { result in
+                        switch result {
+                        case .failure(let error):
+                            print(error)
+                        case .success(let image):
+                            
+                            vm.itemImages.append(Image(uiImage: image))
+                        }
+                    }
                 }
             }
         }

@@ -15,27 +15,9 @@ class ItemViewModel: ObservableObject {
     @Published var item: Item = Item(id: "", CPU: "", camera: "", capacity: [""], color: [""], images: [""], isFavorites: false, price: 0, rating: 0, sd: "", ssd: "", title: "")
     
     init() {
-        getData { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let item):
-                print("item is loaded")
-                self.item = item
-                self.getImages { result in
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let image):
-                        print("images UUUUU")
-                        DispatchQueue.main.async {
-                            self.itemImages.append(Image(uiImage: image))
-                        }
-                    }
-                }
-            }
-        }
+  
     }
+    
     
     func getData(competion: @escaping (Result<Item, Error>) -> Void) {
         guard let url = URL(string: "https://run.mocky.io/v3/6c14c560-15c6-4248-b9d2-b4508df7d4f5") else { return }
@@ -43,7 +25,9 @@ class ItemViewModel: ObservableObject {
         let request = URLRequest(url: url)
         let dataTask = session.dataTask(with: request) { data, response, error in
             if let error = error {
-                competion(.failure(error))
+                DispatchQueue.main.async {
+                    competion(.failure(error))
+                }
                 return
             }
             guard let data = data else { return }
@@ -51,10 +35,13 @@ class ItemViewModel: ObservableObject {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             do {
                 let item = try jsonDecoder.decode(Item.self, from: data)
-                competion(.success(item))
+                DispatchQueue.main.async {
+                    competion(.success(item))
+                }
             } catch {
-                print(error)
-                competion(.failure(error))
+                DispatchQueue.main.async {
+                    competion(.failure(error))
+                }
             }
         }
         dataTask.resume()
@@ -78,12 +65,16 @@ class ItemViewModel: ObservableObject {
             let urlSession = URLSession.shared
             let dataTask = urlSession.dataTask(with: request) { data, response, error in
                 if let error = error {
-                    compeliton(.failure(error))
+                    DispatchQueue.main.async {
+                        compeliton(.failure(error))
+                    }
                     return
                 }
                 guard let data = data,
-                    let uiImage = UIImage(data: data) else { return }
-                compeliton(.success(uiImage))
+                let uiImage = UIImage(data: data) else { return }
+                DispatchQueue.main.async {
+                    compeliton(.success(uiImage))
+                }
             }
             dataTask.resume()
         }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Item: Codable {
+struct Item: Codable, Equatable {
     
     let id: String
     let CPU: String
@@ -21,7 +21,4 @@ struct Item: Codable {
     let sd: String
     let ssd: String
     let title: String
-    
 }
-
-

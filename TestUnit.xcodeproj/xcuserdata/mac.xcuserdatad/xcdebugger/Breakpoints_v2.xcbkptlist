@@ -14,10 +14,58 @@
             filePath = "TestUnit/ViewModel/ItemViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "getImages(compeliton:)"
-            landmarkType = "9">
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "loadImages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "74C3BB79-9B2F-4763-BAFA-7286E4F734B5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestUnit/ViewModel/ItemViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "init()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "74C3BB79-9B2F-4763-BAFA-7286E4F734B5 - 10efb1ab399266d8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestUnit.ItemViewModel.init() -&gt; TestUnit.ItemViewModel"
+                  moduleName = "TestUnit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Documents/SwiftUI/TestUnit/TestUnit/ViewModel/ItemViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "1428">
+               </Location>
+               <Location
+                  uuid = "74C3BB79-9B2F-4763-BAFA-7286E4F734B5 - 339b607fb37b6f7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;TestUnit.Item, Swift.Error&gt;) -&gt; () in TestUnit.ItemViewModel.init() -&gt; TestUnit.ItemViewModel"
+                  moduleName = "TestUnit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Documents/SwiftUI/TestUnit/TestUnit/ViewModel/ItemViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

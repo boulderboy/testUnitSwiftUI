@@ -39,7 +39,7 @@ enum TabType: Int, CaseIterable {
     var tabItem: TabItemData {
         switch self {
         case .explorer:
-            return TabItemData(image: "folder", title: "Explorer")
+            return TabItemData(image: "house", title: "Explorer")
         case .cart:
             return TabItemData(image: "cart", title: "Cart")
         case .favorite:
@@ -49,9 +49,3 @@ enum TabType: Int, CaseIterable {
         }
     }
 }
-
-//struct CustomTabView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CustomTabView()
-//    }
-//}

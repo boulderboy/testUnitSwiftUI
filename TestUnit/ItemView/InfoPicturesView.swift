@@ -9,8 +9,9 @@ import SwiftUI
 
 struct InfoPicturesView: View {
     
-    var item: Item
+    @Binding var item: Item
     @State var cells = [PrarmetrrView]()
+
     let parameters = ["cpu", "camera", "memorychip", "sd"]
     
     var body: some View {
@@ -21,27 +22,48 @@ struct InfoPicturesView: View {
                     Spacer()
                 }
             }
-        }
-        .onAppear {
+        }.onAppear {
             createCells()
         }
+        .onChange(of: item, perform: { _ in
+            createCells()
+        })
     }
     
     func createCells() {
-        cells = []
-        for parameter in parameters {
+        var result = [PrarmetrrView]()
+
+        for parameter in ["cpu", "camera", "memorychip", "sd"] {
             switch parameter {
             case "cpu":
-                cells.append(PrarmetrrView(imageName: "cpu", parameterLabel: item.CPU))
+                result.append(PrarmetrrView(imageName: "cpu", parameterLabel: item.CPU))
             case "camera":
-                cells.append(PrarmetrrView(imageName: "camera", parameterLabel: item.camera))
+                result.append(PrarmetrrView(imageName: "camera", parameterLabel: item.camera))
             case "memorychip":
-                cells.append(PrarmetrrView(imageName: "memorychip", parameterLabel: item.ssd))
+                result.append(PrarmetrrView(imageName: "memorychip", parameterLabel: item.ssd))
             case "sd":
-                cells.append(PrarmetrrView(imageName: "sdcard", parameterLabel: item.sd))
+                result.append(PrarmetrrView(imageName: "sdcard", parameterLabel: item.sd))
             default:
                 return
             }
+        }
+
+        cells = result
+    }
+
+    private func imageName(for item: String) -> String? {
+        print("Image name for \(item)")
+        switch item.lowercased() {
+        case "cpu":
+            return "cpu"
+        case "camera":
+            return "camera"
+        case "sd":
+            return "memorychip"
+        case "ssd":
+            return "sdcard"
+        default:
+            return nil
         }
     }
 }
