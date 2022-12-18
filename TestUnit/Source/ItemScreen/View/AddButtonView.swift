@@ -9,7 +9,11 @@ import SwiftUI
 
 struct AddButtonView: View {
     
-    var price: Int
+    private let price: Int
+    
+    init(price: Int) {
+        self.price = price
+    }
     
     var body: some View {
         Button {
