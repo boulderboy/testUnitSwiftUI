@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PrarmetrrView: View, Identifiable, Equatable {
+struct ParameterView: View, Identifiable, Equatable {
     
     var id = UUID().uuidString
     var imageName: String
@@ -27,6 +27,6 @@ struct PrarmetrrView: View, Identifiable, Equatable {
 
 struct PrarmetrrView_Previews: PreviewProvider {
     static var previews: some View {
-        PrarmetrrView(imageName: "camera", parameterLabel: "123 Gb")
+        ParameterView(imageName: "camera", parameterLabel: "123 Gb")
     }
 }
