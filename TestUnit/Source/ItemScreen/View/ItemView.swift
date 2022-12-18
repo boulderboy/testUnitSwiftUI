@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct ItemView: View {
-   
-    @ObservedObject var vm = ItemViewModel()
+
     @Environment(\.dismiss) var dismiss
-    
+   
+    @ObservedObject var vm: ItemViewModel = {
+        let networkService = NetworkService()
+        let service = ItemServiceImpl(networkService: networkService)
+
+        return ItemViewModel(service: service)
+    }()
+
     var body: some View {
         
         NavigationStack {
@@ -67,26 +73,22 @@ struct ItemView: View {
                 case .failure(let error):
                     print(error)
                 case .success(let item):
+                    DispatchQueue.main.async {
+                        vm.item = item
 
-                    vm.item = item
-
-                    vm.getImages { result in
-                        switch result {
-                        case .failure(let error):
-                            print(error)
-                        case .success(let image):
-                            
-                            vm.itemImages.append(Image(uiImage: image))
+                        vm.getImages { result in
+                            switch result {
+                            case .failure(let error):
+                                print(error)
+                            case .success(let image):
+                                DispatchQueue.main.async {
+                                    vm.itemImages.append(Image(uiImage: image))
+                                }
+                            }
                         }
                     }
                 }
             }
         }
-    }
-}
-
-struct ItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        ItemView()
     }
 }

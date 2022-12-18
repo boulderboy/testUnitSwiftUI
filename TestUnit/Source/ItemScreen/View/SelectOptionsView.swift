@@ -32,7 +32,9 @@ struct SelectOptionsView: View {
                         }
                 }
                 .frame(width: 40, height: 40)
+
             Spacer()
+
             ForEach(item.capacity, id:\.self){ capacity in
                 let currentCapacityId = item.capacity.firstIndex(of: capacity)
                 let isSelected = currentCapacityId == selectedCapacity

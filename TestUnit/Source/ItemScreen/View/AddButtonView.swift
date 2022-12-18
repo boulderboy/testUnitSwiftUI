@@ -17,7 +17,7 @@ struct AddButtonView: View {
     
     var body: some View {
         Button {
-            
+            // Do nothing
         } label: {
             HStack {
                 Text("Add to cart")
@@ -32,11 +32,5 @@ struct AddButtonView: View {
             .background(Color.mainOrange.cornerRadius(10))
         }
 
-    }
-}
-
-struct AddButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddButtonView(price: 1500)
     }
 }

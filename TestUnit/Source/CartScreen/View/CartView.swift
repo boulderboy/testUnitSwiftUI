@@ -9,7 +9,11 @@ import SwiftUI
 
 struct CartView: View {
     
-    @ObservedObject private var vm = CartViewModel()
+    @ObservedObject private var vm: CartViewModel = {
+        let networkService = NetworkService()
+        let cartService = CartServiceImpl(networkService: networkService)
+        return CartViewModel(service: cartService)
+    }()
     
     var body: some View {
         NavigationStack {

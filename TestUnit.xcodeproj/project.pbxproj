@@ -238,6 +238,7 @@
 		A7348772294F454A002B24C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A734877A294F5BE7002B24C3 /* Service */,
 				0453FB24294715060014B8EC /* HomeModel.swift */,
 			);
 			path = Model;
@@ -313,6 +314,13 @@
 				049675752944783800BED49D /* Extensions */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		A734877A294F5BE7002B24C3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

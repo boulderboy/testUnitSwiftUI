@@ -7,77 +7,68 @@
 
 import SwiftUI
 
+protocol ItemService {
+    func loadImage(url: String, completion: @escaping (Result<UIImage, Error>) -> Void)
+    func loadItem(completion: @escaping (Result<Item, Error>) -> Void)
+}
+
+final class ItemServiceImpl: ItemService {
+
+    private enum URLS {
+        static let item = "https://run.mocky.io/v3/6c14c560-15c6-4248-b9d2-b4508df7d4f5"
+    }
+
+    private let networkService: Networking
+
+    init(networkService: Networking) {
+        self.networkService = networkService
+    }
+
+    func loadItem(completion: @escaping (Result<Item, Error>) -> Void) {
+        networkService.request(url: URLS.item, completion: completion)
+    }
+
+    func loadImage(url: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        networkService.requestData(url: url) { result in
+            switch result {
+            case .success(let data):
+                guard let data = data else { return }
+                guard let image = UIImage(data: data) else { return }
+                DispatchQueue.main.async {
+                    completion(.success(image))
+                }
+
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+
+}
+
 class ItemViewModel: ObservableObject {
     
     @Published var selectedColor: Int = 0
     @Published var selectedMemory: Int = 0
     @Published var itemImages: [Image] = []
     @Published var item: Item = Item(id: "", CPU: "", camera: "", capacity: [""], color: [""], images: [""], isFavorites: false, price: 0, rating: 0, sd: "", ssd: "", title: "")
-    
-    init() {
-  
+
+
+    private let service: ItemService
+
+    init(service: ItemService) {
+        self.service = service
     }
-    
-    
-    func getData(competion: @escaping (Result<Item, Error>) -> Void) {
-        guard let url = URL(string: "https://run.mocky.io/v3/6c14c560-15c6-4248-b9d2-b4508df7d4f5") else { return }
-        let session = URLSession.shared
-        let request = URLRequest(url: url)
-        let dataTask = session.dataTask(with: request) { data, response, error in
-            if let error = error {
-                DispatchQueue.main.async {
-                    competion(.failure(error))
-                }
-                return
-            }
-            guard let data = data else { return }
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-            do {
-                let item = try jsonDecoder.decode(Item.self, from: data)
-                DispatchQueue.main.async {
-                    competion(.success(item))
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    competion(.failure(error))
-                }
-            }
-        }
-        dataTask.resume()
+
+    func getData(completion: @escaping (Result<Item, Error>) -> Void) {
+        service.loadItem(completion: completion)
     }
-    
-    func loadImages() {
-        getImages { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let image):
-                self.itemImages.append(Image(uiImage: image))
-            }
-        }
-    }
-    
-    func getImages(compeliton: @escaping (Result<UIImage, Error>) -> Void) {
+
+    func getImages(completion: @escaping (Result<UIImage, Error>) -> Void) {
         for imageUrl in item.images {
-            guard let url = URL(string: imageUrl) else { return }
-            let request = URLRequest(url: url)
-            let urlSession = URLSession.shared
-            let dataTask = urlSession.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    DispatchQueue.main.async {
-                        compeliton(.failure(error))
-                    }
-                    return
-                }
-                guard let data = data,
-                let uiImage = UIImage(data: data) else { return }
-                DispatchQueue.main.async {
-                    compeliton(.success(uiImage))
-                }
-            }
-            dataTask.resume()
+            service.loadImage(url: imageUrl, completion: completion)
         }
     }
-    
 }

@@ -14,8 +14,13 @@ struct TabItemData {
 
 struct TabItemView: View {
     
-    let data: TabItemData
-    let isSelected: Bool
+    private let data: TabItemData
+    private let isSelected: Bool
+
+    init(data: TabItemData, isSelected: Bool) {
+        self.data = data
+        self.isSelected = isSelected
+    }
     
     var body: some View {
         if isSelected {
@@ -36,4 +41,3 @@ struct TabItemView: View {
         }
     }
 }
-

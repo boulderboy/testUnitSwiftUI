@@ -8,10 +8,6 @@
 import SwiftUI
 import ACarousel
 
-struct CarouselItem: Identifiable {
-    let id = UUID()
-    let image: Image
-}
 
 
 struct CarouselView: View {
@@ -20,16 +16,25 @@ struct CarouselView: View {
     
     var body: some View {
         let items = images.map({ CarouselItem(image: $0) })
-        ACarousel(items,
-                  spacing: 27,
-                  headspace: 27) { item in
+        ACarousel(
+            items,
+            spacing: 27,
+            headspace: 27
+        ) { item in
             item.image
                 .resizable()
                 .scaledToFill()
                 .frame(width: 300, height: 350)
                 .cornerRadius(30)
         }
-                  .frame(height: 349)
-                  .shadow(radius: 10, x: 10, y: 10)
+        .frame(height: 349)
+        .shadow(radius: 10, x: 10, y: 10)
+    }
+}
+
+private extension CarouselView {
+    struct CarouselItem: Identifiable {
+        let id = UUID()
+        let image: Image
     }
 }

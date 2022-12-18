@@ -10,7 +10,12 @@ import SwiftUI
 struct HomeView: View {
     
     @State private var showFilters: Bool = false
-    @StateObject private var vm = HomeViewModel()
+    @StateObject private var vm: HomeViewModel = {
+        let networkService = NetworkService()
+        let homeService = HomeServiceImpl(networkService: networkService)
+
+        return HomeViewModel(service: homeService)
+    }()
     
     var body: some View {
         NavigationStack {

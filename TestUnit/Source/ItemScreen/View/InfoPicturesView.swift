@@ -30,7 +30,7 @@ struct InfoPicturesView: View {
         })
     }
     
-    func createCells() {
+    private func createCells() {
         var result = [ParameterView]()
 
         for parameter in ["cpu", "camera", "memorychip", "sd"] {
@@ -49,20 +49,5 @@ struct InfoPicturesView: View {
         }
 
         cells = result
-    }
-
-    private func imageName(for item: String) -> String? {
-        switch item.lowercased() {
-        case "cpu":
-            return "cpu"
-        case "camera":
-            return "camera"
-        case "sd":
-            return "memorychip"
-        case "ssd":
-            return "sdcard"
-        default:
-            return nil
-        }
     }
 }

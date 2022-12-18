@@ -9,10 +9,16 @@ import SwiftUI
 
 struct ParameterView: View, Identifiable, Equatable {
     
-    var id = UUID().uuidString
-    var imageName: String
-    var parameterLabel: String
-    
+    let id = UUID().uuidString
+
+    private let imageName: String
+    private let parameterLabel: String
+
+    init(imageName: String, parameterLabel: String) {
+        self.imageName = imageName
+        self.parameterLabel = parameterLabel
+    }
+
     var body: some View {
         VStack(spacing: 5) {
             Image(systemName: imageName)

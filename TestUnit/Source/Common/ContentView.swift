@@ -20,9 +20,3 @@ struct ContentView: View {
         .toolbar(.hidden, for: .tabBar)
     }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}

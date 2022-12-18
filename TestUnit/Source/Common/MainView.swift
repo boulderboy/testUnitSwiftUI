@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var selectedIndex: Int = 0
+    @State private var selectedIndex: Int = 0
+
     var body: some View {
         CustomTabView(tabs: TabType.allCases.map({ $0.tabItem }), selectedIndex: $selectedIndex) { index in
             let type = TabType(rawValue: index) ?? .explorer
@@ -30,11 +31,5 @@ struct MainView: View {
             ContentView()
         }
         
-    }
-}
-
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
     }
 }

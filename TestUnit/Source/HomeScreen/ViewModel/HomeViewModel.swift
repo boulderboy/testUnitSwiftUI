@@ -8,11 +8,38 @@
 import Foundation
 import SwiftUI
 
+
+protocol HomeService {
+    func loadHomePage(completion: @escaping (Result<Home, Error>) -> Void)
+}
+
+final class HomeServiceImpl: HomeService {
+
+    private enum URLS {
+        static let home = "https://run.mocky.io/v3/654bd15e-b121-49ba-a588-960956b15175"
+    }
+
+    private let networkService: Networking
+
+    init(networkService: Networking) {
+        self.networkService = networkService
+    }
+
+    func loadHomePage(completion: @escaping (Result<Home, Error>) -> Void) {
+        networkService.request(url: URLS.home, completion: completion)
+    }
+
+}
+
 class HomeViewModel: ObservableObject {
     
     @Published var home: Home = .empty
+
+    private var service: HomeService
     
-    init() {
+    init(service: HomeService) {
+        self.service = service
+
         getInfoForHomePage { result in
             switch result {
             case .success(let home):
@@ -25,29 +52,7 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func getInfoForHomePage(completion: @escaping (Result<Home, Error>) -> Void) {
-        
-        guard let url = URL(string: "https://run.mocky.io/v3/654bd15e-b121-49ba-a588-960956b15175") else { return }
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-        let urlSession = URLSession.shared
-        
-        let request = URLRequest(url: url)
-        let dataTsk = urlSession.dataTask(with: request) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            do {
-                guard let data = data else { return }
-                let home = try jsonDecoder.decode(Home.self, from: data)
-                completion(.success(home))
-            } catch {
-                completion(.failure(error))
-            }
-            
-        }
-        dataTsk.resume()
-        
+    private func getInfoForHomePage(completion: @escaping (Result<Home, Error>) -> Void) {
+        service.loadHomePage(completion: completion)
     }
 }
