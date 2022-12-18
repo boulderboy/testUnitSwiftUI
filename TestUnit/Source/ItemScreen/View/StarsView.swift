@@ -40,9 +40,3 @@ struct StarsView: View {
         .foregroundColor(.gray)
     }
 }
-
-struct StarsView_Previews: PreviewProvider {
-    static var previews: some View {
-        StarsView(rating: 4.5, maxRating: 5)
-    }
-}
