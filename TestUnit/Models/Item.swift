@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Item: Codable, Equatable { // Product // Phone // 
+struct Item: Codable, Equatable {
     
     let id: String
     let CPU: String

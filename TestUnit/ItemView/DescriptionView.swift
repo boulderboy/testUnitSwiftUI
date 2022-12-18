@@ -59,14 +59,3 @@ struct DescriptionView: View {
     }
 }
 
-//extension DescriptionView {
-//    var options: some View {
-//
-//    }
-//}
-
-//struct DescriptionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DescriptionView()
-//    }
-//}

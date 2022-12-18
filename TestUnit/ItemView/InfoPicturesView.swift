@@ -12,6 +12,8 @@ struct InfoPicturesView: View {
     @Binding var item: Item
     @State var cells = [PrarmetrrView]()
 
+    let parameters = ["cpu", "camera", "memorychip", "sd"]
+    
     var body: some View {
         HStack {
             ForEach(cells) { cell in
@@ -20,7 +22,10 @@ struct InfoPicturesView: View {
                     Spacer()
                 }
             }
-        }.onChange(of: item, perform: { _ in
+        }.onAppear {
+            createCells()
+        }
+        .onChange(of: item, perform: { _ in
             createCells()
         })
     }

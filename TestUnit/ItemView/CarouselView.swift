@@ -33,9 +33,3 @@ struct CarouselView: View {
                   .shadow(radius: 10, x: 10, y: 10)
     }
 }
-
-//struct CarouselView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CarouselView()
-//    }
-//}

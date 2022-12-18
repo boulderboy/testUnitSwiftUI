@@ -17,29 +17,28 @@ struct CartView: View {
             ZStack {
                 Color.darkViolet
                     .cornerRadius(30)
-                VStack {
-                    ScrollView{
+                ScrollView {
+                    VStack {
                         ForEach(vm.cart.basket) { item in
                             CartItemView(item: item)
                         }
+                        Spacer()
+                        VStack {
+                            Color.greyForCategory
+                                .frame(maxWidth: .infinity, maxHeight: 2)
+                                .padding(.bottom, 18)
+                            TotalView(totalPrice: vm.cart.total, deliveryPrice: vm.cart.delivery)
+                                .padding(.horizontal)
+                            Color.greyForCategory
+                                .frame(maxWidth: .infinity, maxHeight: 2)
+                                .padding(.top, 18)
+                        }
+                        CheckoutButton()
+                            .padding(.vertical, 44)
                     }
-                    Spacer()
-                    VStack {
-                        Color.greyForCategory
-                            .frame(maxWidth: .infinity, maxHeight: 2)
-                            .padding(.bottom, 18)
-                            
-                        TotalView(totalPrice: vm.cart.total, deliveryPrice: vm.cart.delivery)
-                            .padding(.horizontal)
-                        Color.greyForCategory
-                            .frame(maxWidth: .infinity, maxHeight: 2)
-                            .padding(.top, 18)
-                    }
-                    CheckoutButton()
-                        .padding(.vertical, 44)
+                    .padding(.top, 80)
+                    .padding(.horizontal, 25)
                 }
-                .padding(.top, 80)
-                .padding(.horizontal, 25)
             }
             .padding(.top, 180)
             .ignoresSafeArea()
